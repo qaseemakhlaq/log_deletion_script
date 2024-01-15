@@ -36,8 +36,6 @@ def remove_180_days_older_logs(files_path):
                             except ET.ParseError as e:
                                 print(f"Error parsing XML file '{xml_file_path}': {e}")
                                 continue
-                           # except KeyError:
-                            #    print("could not parse")
                             for msg_element in root.iter('msg'):
                                 temp = msg_element.get('timestamp')
                                 if temp:
@@ -47,14 +45,9 @@ def remove_180_days_older_logs(files_path):
 
                                     current_datetime = datetime.now()
                                     current_date = current_datetime.date()
-                                    # print("Current Date:", current_date)
-                                    # print(formatted_time)
-
                                     six_months_ago = current_date - timedelta(days=180)
 
                                     six_months_back_formatted =  six_months_ago.strftime("%Y-%m-%d")
-                                    # print("t", two_days_back_formatted)
-
                                     if formatted_time < six_months_back_formatted:
                                         print(True)
                                         if os.path.exists(remove_job_file_path):
